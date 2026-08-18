@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>GoodPrice - Каталог</title>
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons (lightweight icon set) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- App Container -->
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-main">
+        <div class="logo-area">
+          <div class="logo-circle-wrapper">
+            <div class="logo-ring"></div>
+            <div class="logo-circle">
+              <i data-lucide="thumbs-up"></i>
+            </div>
+          </div>
+          <span class="logo-text">Good<span class="logo-accent">Price</span></span>
+        </div>
+        <div class="header-actions">
+          <button id="admin-shortcut-btn" class="icon-btn" title="Панель управления">
+            <i data-lucide="shield-alert"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Search & Filter Bar -->
+      <div class="search-filter-wrapper">
+        <div class="search-box">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="search-input" placeholder="Поиск товаров..." autocomplete="off">
+          <button id="search-clear-btn" class="clear-btn" style="display: none;">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <button id="filter-trigger-btn" class="filter-btn">
+          <i data-lucide="sliders-horizontal"></i>
+          <span class="filter-badge" id="filter-badge" style="display: none;"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-content">
+      
+      <!-- Horizontal Scrollable Categories -->
+      <section class="categories-section">
+        <div class="categories-scroll" id="categories-container">
+          <button class="category-chip active" data-category="all">Все</button>
+          <button class="category-chip" data-category="electronics">Электроника</button>
+          <button class="category-chip" data-category="accessories">Аксессуары</button>
+          <button class="category-chip" data-category="home">Дом</button>
+        </div>
+      </section>
+
+      <!-- Active Filters Summary -->
+      <div class="active-filters-summary" id="active-filters-summary" style="display: none;">
+        <span class="summary-text">Применены фильтры</span>
+        <button id="reset-filters-shortcut" class="reset-link">Сбросить</button>
+      </div>
+
+      <!-- Products Grid -->
+      <section class="products-section">
+        <div class="products-grid" id="products-grid">
+          <!-- Products will be generated dynamically -->
+          <div class="shimmer-card"></div>
+          <div class="shimmer-card"></div>
+          <div class="shimmer-card"></div>
+          <div class="shimmer-card"></div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+          <div class="empty-icon-wrapper">
+            <i data-lucide="search-code"></i>
+          </div>
+          <h3>Ничего не найдено</h3>
+          <p>Попробуйте изменить поисковый запрос или сбросить фильтры.</p>
+          <button id="empty-reset-btn" class="btn btn-primary">Сбросить фильтры</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Cart Bar (Sticky Bottom) -->
+    <div class="cart-bar" id="cart-bar">
+      <div class="cart-bar-content">
+        <div class="cart-info">
+          <div class="cart-count-wrapper">
+            <i data-lucide="shopping-bag"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </div>
+          <div class="cart-price-details">
+            <span class="cart-total-label">Итого</span>
+            <span class="cart-total-value" id="cart-total-value">0 ₽</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-cart-action" id="cart-action-btn">
+          Оформить заказ
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Bottom Sheet Drawer -->
+  <div class="bottom-sheet" id="filter-sheet">
+    <div class="bottom-sheet-backdrop" id="filter-backdrop"></div>
+    <div class="bottom-sheet-content">
+      <div class="bottom-sheet-drag-handle"></div>
+      <div class="bottom-sheet-header">
+        <h3>Фильтры</h3>
+        <button class="close-sheet-btn" id="filter-close-btn">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="bottom-sheet-body">
+        
+        <!-- Sorting -->
+        <div class="filter-group">
+          <h4>Сортировка</h4>
+          <div class="sort-options">
+            <label class="sort-option">
+              <input type="radio" name="sort-by" value="default" checked>
+              <span>По умолчанию</span>
+            </label>
+            <label class="sort-option">
+              <input type="radio" name="sort-by" value="price-asc">
+              <span>Сначала дешевле</span>
+            </label>
+            <label class="sort-option">
+              <input type="radio" name="sort-by" value="price-desc">
+              <span>Сначала дороже</span>
+            </label>
+            <label class="sort-option">
+              <input type="radio" name="sort-by" value="rating-desc">
+              <span>Высокий рейтинг</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Price Range -->
+        <div class="filter-group">
+          <h4>Диапазон цен (₽)</h4>
+          <div class="price-inputs">
+            <div class="price-input-field">
+              <span class="prefix">от</span>
+              <input type="number" id="price-min" placeholder="0" min="0">
+            </div>
+            <div class="price-input-field">
+              <span class="prefix">до</span>
+              <input type="number" id="price-max" placeholder="99 000" min="0">
+            </div>
+          </div>
+        </div>
+
+        <!-- Extra features -->
+        <div class="filter-group">
+          <h4>Дополнительно</h4>
+          <label class="checkbox-option">
+            <input type="checkbox" id="filter-popular">
+            <span class="checkbox-custom"></span>
+            <span>Только популярные товары</span>
+          </label>
+        </div>
+
+      </div>
+      <div class="bottom-sheet-footer">
+        <button class="btn btn-secondary" id="filter-reset-btn">Сбросить всё</button>
+        <button class="btn btn-primary" id="filter-apply-btn">Применить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Detail Bottom Sheet Drawer -->
+  <div class="bottom-sheet" id="product-sheet">
+    <div class="bottom-sheet-backdrop" id="product-backdrop"></div>
+    <div class="bottom-sheet-content product-detail-content">
+      <div class="bottom-sheet-drag-handle"></div>
+      <div class="bottom-sheet-header">
+        <span class="category-badge" id="detail-category-badge">Электроника</span>
+        <button class="close-sheet-btn" id="product-close-btn">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="bottom-sheet-body">
+        <div class="detail-image-wrapper">
+          <img src="" alt="" id="detail-product-image">
+          <span class="detail-popular-tag" id="detail-popular-tag" style="display: none;">Популярное</span>
+        </div>
+        
+        <div class="detail-info-main">
+          <div class="detail-title-rating">
+            <h2 id="detail-product-title">Название товара</h2>
+            <div class="product-rating">
+              <i data-lucide="star" class="star-icon"></i>
+              <span id="detail-product-rating">4.8</span>
+            </div>
+          </div>
+          <p class="detail-product-desc" id="detail-product-desc">Описание товара...</p>
+        </div>
+
+        <!-- Specifications -->
+        <div class="detail-specs-group">
+          <h4>Характеристики</h4>
+          <div class="specs-grid" id="detail-specs-grid">
+            <!-- Specifications items generated here -->
+          </div>
+        </div>
+
+      </div>
+      <div class="bottom-sheet-footer product-detail-footer">
+        <div class="detail-price-box">
+          <span class="price-label">Цена</span>
+          <span class="price-value" id="detail-product-price">12 900 ₽</span>
+        </div>
+        <div class="cart-quantity-selector" id="detail-quantity-selector" style="display: none;">
+          <button class="qty-btn" id="qty-minus-btn">
+            <i data-lucide="minus"></i>
+          </button>
+          <span class="qty-value" id="qty-current-value">1</span>
+          <button class="qty-btn" id="qty-plus-btn">
+            <i data-lucide="plus"></i>
+          </button>
+        </div>
+        <button class="btn btn-primary btn-add-to-cart" id="detail-add-to-cart-btn">
+          <i data-lucide="shopping-cart"></i>
+          Добавить в корзину
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>

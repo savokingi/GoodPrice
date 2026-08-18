@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "name": "Беспроводные наушники ClearSound Max",
+    "category": "electronics",
+    "categoryName": "Электроника",
+    "price": 12900,
+    "description": "Минималистичные накладные наушники с активным шумоподавлением, студийным качеством звука и временем работы до 40 часов.",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=600",
+    "rating": 4.8,
+    "popular": true,
+    "specs": {
+      "Цвет": "Космический серый",
+      "Подключение": "Bluetooth 5.2",
+      "Время работы": "До 40 ч"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Умные часы Chronos Lite",
+    "category": "electronics",
+    "categoryName": "Электроника",
+    "price": 8500,
+    "description": "Элегантные смарт-часы с AMOLED-экраном, мониторингом здоровья 24/7 и влагозащитой IP68. Идеальное дополнение к вашему стилю.",
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=600",
+    "rating": 4.6,
+    "popular": false,
+    "specs": {
+      "Цвет": "Черный матовый",
+      "Экран": "AMOLED 1.43\"",
+      "Влагозащита": "IP68"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Кожаный рюкзак Nomad Slim",
+    "category": "accessories",
+    "categoryName": "Аксессуары",
+    "price": 14200,
+    "description": "Ультратонкий городской рюкзак из натуральной кожи. Отделение для ноутбука до 15.6\", скрытые карманы и водоотталкивающее покрытие.",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=600",
+    "rating": 4.9,
+    "popular": true,
+    "specs": {
+      "Материал": "Натуральная кожа",
+      "Объем": "15 литров",
+      "Цвет": "Шоколадный"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Аромадиффузор Aura Wave",
+    "category": "home",
+    "categoryName": "Дом",
+    "price": 3800,
+    "description": "Ультразвуковой диффузор с мягкой LED-подсветкой и функцией холодного тумана. Создает атмосферу уюта и спокойствия в вашем доме.",
+    "image": "https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&q=80&w=600",
+    "rating": 4.7,
+    "popular": true,
+    "specs": {
+      "Объем": "300 мл",
+      "Материал": "Керамика / Дерево",
+      "Режимы": "3 уровня тумана"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Портативная колонка Orbit Mini",
+    "category": "electronics",
+    "categoryName": "Электроника",
+    "price": 5400,
+    "description": "Компактная акустика с объемным звуком 360 градусов и защитой от воды IPX7. Возьмите любимую музыку куда угодно.",
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&q=80&w=600",
+    "rating": 4.5,
+    "popular": false,
+    "specs": {
+      "Мощность": "15 Вт",
+      "Время работы": "До 12 ч",
+      "Цвет": "Морской синий"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Минималистичный кошелек Cardholder Pro",
+    "category": "accessories",
+    "categoryName": "Аксессуары",
+    "price": 2900,
+    "description": "Тонкий алюминиевый картхолдер с RFID-защитой и автоматическим выдвижным механизмом для 6 карт. Плюс отделение для купюр.",
+    "image": "https://images.unsplash.com/photo-1627124424074-7227c2c046db?auto=format&fit=crop&q=80&w=600",
+    "rating": 4.8,
+    "popular": true,
+    "specs": {
+      "Материал": "Авиационный алюминий",
+      "RFID-защита": "Есть",
+      "Толщина": "8 мм"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Настольная лампа Eclipse Light",
+    "category": "home",
+    "categoryName": "Дом",
+    "price": 7200,
+    "description": "Стильный светильник с беспроводной зарядкой для смартфона и регулировкой цветовой температуры от теплого до холодного света.",
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600",
+    "rating": 4.7,
+    "popular": false,
+    "specs": {
+      "Зарядка": "Qi 15W",
+      "Регулировка": "Сенсорная",
+      "Световой поток": "450 лм"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Бутылка для воды Hydro Flask 750",
+    "category": "accessories",
+    "categoryName": "Аксессуары",
+    "price": 3100,
+    "description": "Термобутылка из нержавеющей стали. Сохраняет напитки холодными до 24 часов и горячими до 12 часов. Не впитывает запахи.",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&q=80&w=600",
+    "rating": 4.9,
+    "popular": false,
+    "specs": {
+      "Объем": "750 мл",
+      "Материал": "Нержавеющая сталь",
+      "Сохранение тепла": "До 12 ч"
+    }
+  }
+]

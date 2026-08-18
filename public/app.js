@@ -198,10 +198,7 @@ function renderProducts() {
       <div class="card-img-wrapper">
         ${popularTag}
         <img src="${product.image}" alt="${product.name}" loading="lazy">
-        <div class="card-rating-badge">
-          <i data-lucide="star"></i>
-          <span>${product.rating}</span>
-        </div>
+
       </div>
       <div class="card-body">
         <span class="card-category">${product.categoryName}</span>
@@ -314,7 +311,7 @@ function openProductDetail(productId) {
   elements.detailProductImage.alt = product.name;
   elements.detailPopularTag.style.display = product.popular ? 'block' : 'none';
   elements.detailProductTitle.innerText = product.name;
-  elements.detailProductRating.innerText = product.rating;
+
   elements.detailProductDesc.innerText = product.description;
   
   // Specs rendering

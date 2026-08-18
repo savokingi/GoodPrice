@@ -111,7 +111,7 @@ if (!fs.existsSync(PRODUCTS_FILE)) {
 
 // --- Express Configuration ---
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 // Helper to read database
 function readProducts() {
@@ -152,11 +152,11 @@ function authRequired(req, res, next) {
 
 // --- Routes & Pages Serving ---
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+  res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
 // --- API Endpoints ---
